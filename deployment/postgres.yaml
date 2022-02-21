@@ -1,0 +1,97 @@
+-apiVersion: v1
+kind: Namespace
+metadata:
+  name: outline
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  labels:
+    io.kompose.service: postgres
+  name: postgres
+  namespace: outline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      labels:
+        io.kompose.service: postgres
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              value: outline
+            - name: POSTGRES_PASSWORD
+              value: Adminhotoa123
+            - name: POSTGRES_USER
+              value: steedos
+          image: postgres
+          name: postgres
+          ports:
+            - containerPort: 5432
+          resources:
+            limits:
+              cpu: "2.0"
+              memory: "2.0Gi"
+              ephemeral-storage: 800Mi #定义存储的限制为800M
+            requests:
+              cpu: "0.2"
+              memory: "0.5Gi"
+              ephemeral-storage: 800Mi
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-claim0
+              subPath: postgres_data
+      restartPolicy: Always
+      volumes:
+        - name: postgres-claim0
+          persistentVolumeClaim:
+            claimName: ebs-claim-postgres
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  labels:
+    io.kompose.service: postgres
+  name: postgres
+  namespace: outline
+spec:
+  ports:
+    - name: "5532"
+      port: 5532
+      targetPort: 5432
+  selector:
+    io.kompose.service: postgres
+status:
+  loadBalancer: {}
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-claim-postgres
+  namespace: outline
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: resize-sc
+  resources:
+    requests:
+      storage: "10Gi"

@@ -1,0 +1,369 @@
+-apiVersion: v1
+kind: Namespace
+metadata:
+  name: outline
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  # creationTimestamp: null
+  labels:
+    io.kompose.service: outline
+  name: outline
+  namespace: outline
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: outline
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      # creationTimestamp: null
+      labels:
+        io.kompose.service: outline
+    spec:
+      containers:
+        - args:
+            - yarn
+            - start
+          env:
+            - name: ALLOWED_DOMAINS
+              valueFrom:
+                configMapKeyRef:
+                  key: ALLOWED_DOMAINS
+                  name: env
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_ACCESS_KEY_ID
+                  name: env
+            - name: AWS_REGION
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_REGION
+                  name: env
+            - name: AWS_S3_FORCE_PATH_STYLE
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_S3_FORCE_PATH_STYLE
+                  name: env
+            - name: AWS_S3_UPLOAD_BUCKET_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_S3_UPLOAD_BUCKET_NAME
+                  name: env
+            - name: AWS_S3_UPLOAD_BUCKET_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_S3_UPLOAD_BUCKET_URL
+                  name: env
+            - name: AWS_S3_UPLOAD_MAX_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_S3_UPLOAD_MAX_SIZE
+                  name: env
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: AWS_SECRET_ACCESS_KEY
+                  name: env
+            - name: AZURE_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: AZURE_CLIENT_ID
+                  name: env
+            - name: AZURE_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: AZURE_CLIENT_SECRET
+                  name: env
+            - name: AZURE_RESOURCE_APP_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: AZURE_RESOURCE_APP_ID
+                  name: env
+            - name: CDN_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: CDN_URL
+                  name: env
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: DATABASE_URL
+                  name: env
+            - name: DATABASE_URL_TEST
+              valueFrom:
+                configMapKeyRef:
+                  key: DATABASE_URL_TEST
+                  name: env
+            - name: DEBUG
+              valueFrom:
+                configMapKeyRef:
+                  key: DEBUG
+                  name: env
+            - name: DEFAULT_LANGUAGE
+              valueFrom:
+                configMapKeyRef:
+                  key: DEFAULT_LANGUAGE
+                  name: env
+            - name: ENABLE_UPDATES
+              valueFrom:
+                configMapKeyRef:
+                  key: ENABLE_UPDATES
+                  name: env
+            - name: FORCE_HTTPS
+              valueFrom:
+                configMapKeyRef:
+                  key: FORCE_HTTPS
+                  name: env
+            - name: GOOGLE_ANALYTICS_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: GOOGLE_ANALYTICS_ID
+                  name: env
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: GOOGLE_CLIENT_ID
+                  name: env
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: GOOGLE_CLIENT_SECRET
+                  name: env
+            - name: MAXIMUM_IMPORT_SIZE
+              valueFrom:
+                configMapKeyRef:
+                  key: MAXIMUM_IMPORT_SIZE
+                  name: env
+            - name: PGSSLMODE
+              valueFrom:
+                configMapKeyRef:
+                  key: PGSSLMODE
+                  name: env
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: PORT
+                  name: env
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_URL
+                  name: env
+            - name: SECRET_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: SECRET_KEY
+                  name: env
+            - name: SENTRY_DSN
+              valueFrom:
+                configMapKeyRef:
+                  key: SENTRY_DSN
+                  name: env
+            - name: SLACK_APP_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: SLACK_APP_ID
+                  name: env
+            - name: SLACK_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: SLACK_KEY
+                  name: env
+            - name: SLACK_MESSAGE_ACTIONS
+              valueFrom:
+                configMapKeyRef:
+                  key: SLACK_MESSAGE_ACTIONS
+                  name: env
+            - name: SLACK_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: SLACK_SECRET
+                  name: env
+            - name: SLACK_VERIFICATION_TOKEN
+              valueFrom:
+                configMapKeyRef:
+                  key: SLACK_VERIFICATION_TOKEN
+                  name: env
+            - name: SMTP_FROM_EMAIL
+              valueFrom:
+                configMapKeyRef:
+                  key: SMTP_FROM_EMAIL
+                  name: env
+            - name: SMTP_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: SMTP_HOST
+                  name: env
+            - name: SMTP_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: SMTP_PASSWORD
+                  name: env
+            - name: SMTP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: SMTP_PORT
+                  name: env
+            - name: SMTP_REPLY_EMAIL
+              valueFrom:
+                configMapKeyRef:
+                  key: SMTP_REPLY_EMAIL
+                  name: env
+            - name: SMTP_SECURE
+              valueFrom:
+                configMapKeyRef:
+                  key: SMTP_SECURE
+                  name: env
+            - name: SMTP_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: SMTP_USERNAME
+                  name: env
+            - name: URL
+              valueFrom:
+                configMapKeyRef:
+                  key: URL
+                  name: env
+            - name: UTILS_SECRET
+              valueFrom:
+                configMapKeyRef:
+                  key: UTILS_SECRET
+                  name: env
+            - name: WEB_CONCURRENCY
+              valueFrom:
+                configMapKeyRef:
+                  key: WEB_CONCURRENCY
+                  name: env
+          image: outlinewiki/outline:latest
+          name: outline
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: "2.0"
+              memory: "2.0Gi"
+              ephemeral-storage: 800Mi #定义存储的限制为800M
+            requests:
+              cpu: "0.2"
+              memory: "0.5Gi"
+              ephemeral-storage: 800Mi
+        - image: redis
+          name: redis
+          ports:
+            - containerPort: 6379
+          resources:
+            limits:
+              cpu: "1.0"
+              memory: "0.5Gi"
+              ephemeral-storage: 800Mi #定义存储的限制为800M
+            requests:
+              cpu: "0.1"
+              memory: "0.3Gi"
+              ephemeral-storage: 800Mi
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  labels:
+    io.kompose.service: outline
+  name: outline
+  namespace: outline
+spec:
+  ports:
+    - name: "3300"
+      port: 3300
+      targetPort: 3000
+  selector:
+    io.kompose.service: outline
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/ingress.class: "nginx"
+  name: steedos-outline-ingress
+  namespace: outline
+spec:
+  rules:
+    - host: outline.steedos.cn
+      http:
+        paths:
+          - backend:
+              serviceName: outline
+              servicePort: 3300
+            path: /
+  tls:
+    - hosts:
+        - outline.steedos.cn
+      secretName: steedos-http-tls-secret
+
+---
+apiVersion: v1
+data:
+  ALLOWED_DOMAINS: ""
+  AWS_ACCESS_KEY_ID: AKIATVOGHMUJ5XFWCN4S
+  AWS_REGION: cn-northwest-1
+  AWS_S3_FORCE_PATH_STYLE: "false"
+  AWS_S3_UPLOAD_BUCKET_NAME: steedos-outline
+  AWS_S3_UPLOAD_BUCKET_URL: https://steedos-outline.s3.cn-northwest-1.amazonaws.com.cn
+  AWS_S3_UPLOAD_MAX_SIZE: "26214400"
+  AWS_SECRET_ACCESS_KEY: YoZJwtjZlfbJ3VPHzETjKQrEmypQK5J++HGbAbIT
+  AZURE_CLIENT_ID: ""
+  AZURE_CLIENT_SECRET: ""
+  AZURE_RESOURCE_APP_ID: ""
+  CDN_URL: ""
+  DATABASE_URL: postgres://steedos:Adminhotoa123@postgres:5532/outline
+  DATABASE_URL_TEST: postgres://steedos:Adminhotoa123@postgres:5532/outline-test
+  DEBUG: cache,presenters,events,emails,mailer,utils,http,server,processors
+  DEFAULT_LANGUAGE: zh_CN
+  ENABLE_UPDATES: "true"
+  FORCE_HTTPS: "false"
+  GOOGLE_ANALYTICS_ID: ""
+  GOOGLE_CLIENT_ID: ""
+  GOOGLE_CLIENT_SECRET: ""
+  MAXIMUM_IMPORT_SIZE: "5120000"
+  PGSSLMODE: disable
+  PORT: "3000"
+  REDIS_URL: redis://127.0.0.1:6379
+  SECRET_KEY: d4d798604bceb0b95ff4d2a5420437617ab65eccdbe89a55d14de52d92d7ae1c
+  SENTRY_DSN: ""
+  SLACK_APP_ID: T02D6JBQ2JF
+  SLACK_KEY: "2448623818627.2472335617264"
+  SLACK_MESSAGE_ACTIONS: "true"
+  SLACK_SECRET: 3de8b92b0875511948f54a4920c71754
+  SLACK_VERIFICATION_TOKEN: your_token
+  SMTP_FROM_EMAIL: support@hotoa.com
+  SMTP_HOST: smtp.mxhichina.com
+  SMTP_PASSWORD: Adminhotoa123
+  SMTP_PORT: "465"
+  SMTP_REPLY_EMAIL: support@hotoa.com
+  SMTP_SECURE: "true"
+  SMTP_USERNAME: support@hotoa.com
+  URL: https://outline.steedos.cn
+  UTILS_SECRET: 65565189169ec63b52986d018adf55863f27641cf8512ed1dae6d12445fdea0c
+  WEB_CONCURRENCY: "1"
+kind: ConfigMap
+metadata:
+  labels:
+    io.kompose.service: outline-env
+  name: env
+  namespace: outline
