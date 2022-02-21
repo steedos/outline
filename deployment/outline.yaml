@@ -319,48 +319,6 @@ spec:
 ---
 apiVersion: v1
 data:
-  ALLOWED_DOMAINS: ""
-  AWS_ACCESS_KEY_ID: AKIATVOGHMUJ5XFWCN4S
-  AWS_REGION: cn-northwest-1
-  AWS_S3_FORCE_PATH_STYLE: "false"
-  AWS_S3_UPLOAD_BUCKET_NAME: steedos-outline
-  AWS_S3_UPLOAD_BUCKET_URL: https://steedos-outline.s3.cn-northwest-1.amazonaws.com.cn
-  AWS_S3_UPLOAD_MAX_SIZE: "26214400"
-  AWS_SECRET_ACCESS_KEY: YoZJwtjZlfbJ3VPHzETjKQrEmypQK5J++HGbAbIT
-  AZURE_CLIENT_ID: ""
-  AZURE_CLIENT_SECRET: ""
-  AZURE_RESOURCE_APP_ID: ""
-  CDN_URL: ""
-  DATABASE_URL: postgres://steedos:Adminhotoa123@postgres:5532/outline
-  DATABASE_URL_TEST: postgres://steedos:Adminhotoa123@postgres:5532/outline-test
-  DEBUG: cache,presenters,events,emails,mailer,utils,http,server,processors
-  DEFAULT_LANGUAGE: zh_CN
-  ENABLE_UPDATES: "true"
-  FORCE_HTTPS: "false"
-  GOOGLE_ANALYTICS_ID: ""
-  GOOGLE_CLIENT_ID: ""
-  GOOGLE_CLIENT_SECRET: ""
-  MAXIMUM_IMPORT_SIZE: "5120000"
-  PGSSLMODE: disable
-  PORT: "3000"
-  REDIS_URL: redis://127.0.0.1:6379
-  SECRET_KEY: d4d798604bceb0b95ff4d2a5420437617ab65eccdbe89a55d14de52d92d7ae1c
-  SENTRY_DSN: ""
-  SLACK_APP_ID: T02D6JBQ2JF
-  SLACK_KEY: "2448623818627.2472335617264"
-  SLACK_MESSAGE_ACTIONS: "true"
-  SLACK_SECRET: 3de8b92b0875511948f54a4920c71754
-  SLACK_VERIFICATION_TOKEN: your_token
-  SMTP_FROM_EMAIL: support@hotoa.com
-  SMTP_HOST: smtp.mxhichina.com
-  SMTP_PASSWORD: Adminhotoa123
-  SMTP_PORT: "465"
-  SMTP_REPLY_EMAIL: support@hotoa.com
-  SMTP_SECURE: "true"
-  SMTP_USERNAME: support@hotoa.com
-  URL: https://outline.steedos.cn
-  UTILS_SECRET: 65565189169ec63b52986d018adf55863f27641cf8512ed1dae6d12445fdea0c
-  WEB_CONCURRENCY: "1"
 kind: ConfigMap
 metadata:
   labels:
