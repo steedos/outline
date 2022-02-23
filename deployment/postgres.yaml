@@ -34,7 +34,7 @@ spec:
             - name: POSTGRES_DB
               value: outline
             - name: POSTGRES_PASSWORD
-              value: Adminhotoa123
+              value: ********
             - name: POSTGRES_USER
               value: steedos
           image: postgres
